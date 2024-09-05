@@ -68,9 +68,10 @@ pub mod private_a {
         let amount_with_reward = (amount as f64 * 1.1) as u64;
 
         validate_mint(
-            amount_with_reward,
+            amount,
             &ctx.accounts.sales_mint_of_token.key(),
-            ctx.accounts.mint_stat.amount_left
+            ctx.accounts.mint_stat.amount_left,
+            amount_with_reward
         )?;
 
         let purchase_price = calculate_purchase_price(amount);

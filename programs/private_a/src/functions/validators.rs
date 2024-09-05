@@ -21,11 +21,12 @@ pub fn validate_init(
 pub fn validate_mint(
     amount: u64,
     sales_token_key: &Pubkey,
-    amount_left: u64
+    amount_left: u64,
+    amount_with_reward: u64
 ) -> Result<()> {
     require!(amount >= MIN_TOKENS_AMOUNT, Errors::IncorrectAmount);
     require!(*sales_token_key == Pubkey::from_str(SALES_TOKEN_MINT).unwrap(), Errors::InvalidSalesToken);
-    require!(amount_left >= amount, Errors::NotEnoughTokensForMint);
+    require!(amount_left >= amount_with_reward, Errors::NotEnoughTokensForMint);
 
     Ok(())
 }
