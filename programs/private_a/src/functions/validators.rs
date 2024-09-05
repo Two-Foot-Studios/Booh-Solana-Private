@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::constants::{ADMIN_KEY, SALES_TOKEN_MINT, Errors, TOKEN_MINT};
+use crate::constants::{ADMIN_KEY, SALES_TOKEN_MINT, Errors, TOKEN_MINT, MIN_TOKENS_AMOUNT};
 use std::str::FromStr;
 
 pub fn validate_init(
@@ -23,7 +23,7 @@ pub fn validate_mint(
     sales_token_key: &Pubkey,
     amount_left: u64
 ) -> Result<()> {
-    require!(amount > 0, Errors::IncorrectAmount);
+    require!(amount >= MIN_TOKENS_AMOUNT, Errors::IncorrectAmount);
     require!(*sales_token_key == Pubkey::from_str(SALES_TOKEN_MINT).unwrap(), Errors::InvalidSalesToken);
     require!(amount_left >= amount, Errors::NotEnoughTokensForMint);
 

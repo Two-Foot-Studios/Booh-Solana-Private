@@ -65,8 +65,10 @@ pub mod private_a {
         User function for minting tokens
     */
     pub fn mint(ctx: Context<Mint>, amount: u64) -> Result<()> {
+        let amount_with_reward = (amount as f64 * 1.1) as u64;
+
         validate_mint(
-            amount,
+            amount_with_reward,
             &ctx.accounts.sales_mint_of_token.key(),
             ctx.accounts.mint_stat.amount_left
         )?;
@@ -95,8 +97,8 @@ pub mod private_a {
 
         anchor_spl::token::transfer(cpi_ctx, purchase_price)?;
 
-        ctx.accounts.mint_stat.amount_left -= amount;
-        ctx.accounts.user_mint_stat.token_amount = amount;
+        ctx.accounts.mint_stat.amount_left -= amount_with_reward;
+        ctx.accounts.user_mint_stat.token_amount = amount_with_reward;
         ctx.accounts.mint_stat.profit += purchase_price;
 
         Ok(())

@@ -202,7 +202,7 @@ describe("private_a", () => {
         .rpc();
 
     let afterFromWalletBalance = await provider.connection.getTokenAccountBalance(fromBankAta.address);
-    console.log("After bank token balance - ", beforeFromWalletBalance.value.uiAmount);
+    console.log("After bank token balance - ", afterFromWalletBalance.value.uiAmount);
 
     let info = await program.account.mintStat.fetch(mintStatPda);
     console.log(

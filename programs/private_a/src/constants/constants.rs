@@ -7,3 +7,4 @@ pub const TOKEN_PRICE: f64 = 0.000006;
 pub const TOKEN_DECIMAL: u64 = 1_000_000_000;
 pub const SECONDS_IN_YEAR: i64 = 12 * 2_678_400;
 pub const CLIFF_IN_SECONDS: i64 = 1 * 2_678_400;
+pub const MIN_TOKENS_AMOUNT: u64 = 120;
